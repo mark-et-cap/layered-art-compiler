@@ -3,8 +3,9 @@
 Simple code to randomly generate attributes, create CSV/JSON files and compile .PNG layers to create images such as NFTs
 
 ## Objective
-    - find a way to programmatically generate random attributes and compile images based on those attributes
-    - explore csv/json file creation/writing within python
+
+   - find a way to programmatically generate random attributes and compile images based on those attributes
+   - explore csv/json file creation/writing within python
 
 
 ## Download Python
@@ -30,9 +31,9 @@ Naming convention for files should be consisent per type(i.e. mouth1.png, mouth2
 
 ## Steps to use
 
-    1. create your artwork, determine the number of layers and categories
+   1. create your artwork, determine the number of layers and categories
 
-    2. go to 1-generate-attributes-csv.py and use the comments to replicate your set up
+   2. go to 1-generate-attributes-csv.py and use the comments to replicate your set up
         - set up your header columns (one for each layer + # if that's an important element for your project)
         - create variables for each layer (one for the number of options and one of the weight of each option described in the comments)
         - modify the range to match the total number of row you'd like to generate
@@ -41,27 +42,25 @@ Naming convention for files should be consisent per type(i.e. mouth1.png, mouth2
         - highlight all text and run the script, confirm that a csv file is generated
             *note that if you open the csv file in excel, the leading 0's will be erased. To get them back use the formulate "=TEXT(A2, "00000")" where A2 is the cell with your zero-filled number and "00000" represents the number of digits (if you used 4, only use 4 0's here)
 
-    3. move over to 2-csv-to-json.py and update the file names and key (currently '#')
+   3. move over to 2-csv-to-json.py and update the file names and key (currently '#')
         - the json file name will be whatever you want the file to be called
         - if your first column/key is not '#' then change it in line 19
         - highlight all text and run the script, confirm that a json file is generated
             *you can open this file without issues with leading zeros
 
-    4. open 3-generate-PNG.py
+   4. open 3-generate-PNG.py
         - update range to match the set of images to generate -- range(1000) would create the first 1000 images from the json file
         - update the json file name to match your json file name
         - adjust your zero_filled_number if required
         - replace the second bracket (per comment in file) with your attribute name
-            - add/remove attributes in the same format as necessary
+           *add/remove attributes in the same format as necessary
         - replace/update the source path to match your attributes, ensure that the appropriate path is tied to each attribute
         - in the section with the code "Image.alpha_composite..." start from the furthest back layer and build up one layer at a time
-            - Example:
+            -Example:
                 background is furthest back; then glow; then headshape
                 Therefore:
                 backgroundGlow = Image.alpha_composite(background, glow)
                 glowHeadshape = Image.alpha_composite(backgroundGlow, headshape)
-
-
                 backgroundGlow represents background & glow
                 glowHeadshape represents backgroundGlow & headshape (therefore background, glow & headshape)
         
